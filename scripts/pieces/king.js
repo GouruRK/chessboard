@@ -41,4 +41,8 @@ class King extends Piece {
         }
         return false;
     }
+    
+    copy() {
+        return new King(this.color, this.pos, this.step, this.type, this.src)
+    }
 }

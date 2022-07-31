@@ -10,4 +10,8 @@ class Knight extends Piece {
         let pos = removePosOutOfGrid([p-21, p-19, p-12, p-8, p+8, p+12, p+19, p+21]);
         return removePosWhereAlly(pos, this.color)
     }
+
+    copy() {
+        return new Knight(this.color, this.pos, this.step, this.type, this.src)
+    }
 }

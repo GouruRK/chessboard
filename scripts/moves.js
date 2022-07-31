@@ -1,48 +1,67 @@
 'use strict';
 
-function move(from, to) {
-    let piece = findColoredPieceByPos(piecesArray[currentPlayer], from);
-    let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[currentPlayer]], to);
+function move(from, to, player = undefined, pieces = undefined, visual = true) {
+    if (player == undefined) {
+        player = currentPlayer;
+    }
+    if (pieces == undefined) {
+        pieces = piecesArray;
+    }
+    let piece = findColoredPieceByPos(pieces[player], from);
+    let opponentPiece = findColoredPieceByPos(pieces[reverseColor[player]], to);
     // if there is already a piece where the player places it's own one : its a capture
     if (opponentPiece != false) {
-        let newOpponentPieces = removePieceFromPos(piecesArray[reverseColor[currentPlayer]], to);
-        piecesArray[reverseColor[currentPlayer]] = newOpponentPieces;
+        let newOpponentPieces = removePieceFromPos(pieces[reverseColor[currentPlayer]], to);
+        pieces[reverseColor[player]] = newOpponentPieces;
     }
     // check if the move is 'en passant'
-    enPassant(from, to);
-    // check if the move is castling
-    castle(from, to);
+    enPassant(from, to, player, pieces, visual);
+    if (visual) {
+        // check if the move is castling
+        castle(from, to);
+    }
     // update the piece's propreties
     piece.setPos(to);
     piece.addMove([from, to]);
-    // change the player
-    currentPlayer = reverseColor[currentPlayer];
-    // remove en passant
-    removeEnPassant(currentPlayer);
+    if (visual) {
+        // change the player
+        currentPlayer = reverseColor[currentPlayer];
+        // remove en passant
+        removeEnPassant(currentPlayer, pieces);
+    }
+    
 }
 
-function enPassant(from, to) {
-    let piece = findColoredPieceByPos(piecesArray[currentPlayer], from);
-    let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[currentPlayer]], to);
+function enPassant(from, to, player = undefined, pieces = undefined, visual = true) {
+    if (player == undefined) {
+        player = currentPlayer;
+    }
+    if (pieces == undefined) {
+        pieces = piecesArray;
+    }
+    let piece = findColoredPieceByPos(pieces[player], from);
+    let opponentPiece = findColoredPieceByPos(pieces[reverseColor[player]], to);
     // determine if its an 'en passant' move
     if ((delta(from, to) == 11 || delta(from, to) == 9)
         && piece.getType() == 'pawn'
         && opponentPiece == false) {
 
         // find the real position of the ennemy piece
-        opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[currentPlayer]], piece.getPos()-1);
+        opponentPiece = findColoredPieceByPos(pieces[reverseColor[player]], piece.getPos()-1);
         if (opponentPiece == false || opponentPiece.getEnPassant() == false) {
-            opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[currentPlayer]], piece.getPos()+1);
+            opponentPiece = findColoredPieceByPos(pieces[reverseColor[player]], piece.getPos()+1);
         }
         // If the piece can't be found, its not an 'en passant' move : just a capture
         if (opponentPiece == false || opponentPiece.getEnPassant() == false) {
             return;
         }
         // remove the piece
-        let newOpponentPieces = removePieceFromPos(piecesArray[reverseColor[currentPlayer]], opponentPiece.getPos());
-        piecesArray[reverseColor[currentPlayer]] = newOpponentPieces;
+        let newOpponentPieces = removePieceFromPos(pieces[reverseColor[player]], opponentPiece.getPos());
+        pieces[reverseColor[player]] = newOpponentPieces;
         // remove the piece from the visual board
-        removeImageFromPos(opponentPiece.getPos());
+        if (visual) {
+            removeImageFromPos(opponentPiece.getPos());
+        }
     }
 }
 
@@ -76,6 +95,9 @@ function castle(from, to) {
         newRookImage.ondragstart = function() {
             drag(event);
         };
+        newRookImage.ondragend = function() {
+            onDragEnd(event);
+        };
         newRookImage.classList.add('img');
         // add the new rook element to the visual board
         document.getElementById('p-'+String(newRookPos)).appendChild(newRookImage);
@@ -85,4 +107,26 @@ function castle(from, to) {
         rook.setPos(newRookPos);
         rook.addMove([oldRookPos, newRookPos]);
     }
+}
+
+// if current player is white and his king is under attack
+//  -> remove all possibles moves if after it, the king is still under attack
+function removeMovesIfCheck(from, moves, color) {
+    let newMoves = [];
+    for (let to of moves) {
+        let pieces = simulate(from, to, color);
+        if (isCheck(color, pieces) == false) {
+            newMoves.push(to);
+        }
+    }
+    return newMoves;
+}
+
+function simulate(from, to, color) {
+    let pieces = {
+        'white': copyPiecesArray(piecesArray['white']),
+        'black': copyPiecesArray(piecesArray['black'])
+    }
+    move(from, to, color, pieces, false);
+    return pieces;
 }

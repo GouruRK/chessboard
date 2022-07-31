@@ -8,4 +8,8 @@ class Rook extends Piece {
     canCastle() {
         return this.lastMoves.length == 0 ? true : false;
     }
+
+    copy() {
+        return new Rook(this.color, this.pos, this.step, this.type, this.src)
+    }
 }

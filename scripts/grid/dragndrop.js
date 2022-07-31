@@ -15,6 +15,7 @@ function drag(event) {
     }
     // Look at all the squares the piece can go
     let legalMoves = piece.getLegalMoves();
+    legalMoves = removeMovesIfCheck(parentId, legalMoves, currentPlayer);
     // If there is, add special moves
     if (piece.getType() == 'king') {
         let caslteDir = piece.canCastle();

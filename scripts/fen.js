@@ -5,6 +5,7 @@ Some usefull fens :
 
 Init : 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'
 Castle : 'r3k2r/8/8/8/8/8/8/R3K2R w'
+Attack on the king : 'r6r/4k3/8/8/8/8/8/2K1R2R b'
 */
 
 function loadFen(fen) {

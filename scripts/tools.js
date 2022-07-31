@@ -69,3 +69,15 @@ const removePieceFromPos = function(pieces, pos) {
 const delta = function(pos1, pos2) {
     return Math.abs(pos1 - pos2);
 }
+
+const copyArray = function(array) {
+    return array.filter(_ => true);
+}
+
+const copyPiecesArray = function(array) {
+    let newArray = [];
+    array.forEach(p => {
+        newArray.push(p.copy());
+    });
+    return newArray;
+}

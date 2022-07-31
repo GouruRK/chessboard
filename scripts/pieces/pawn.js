@@ -71,4 +71,8 @@ class Pawn extends Piece {
     setEnPassant(value) {
         this.enPassant = value;
     }
+
+    copy() {
+        return new Pawn(this.color, this.pos, this.step, this.type, this.src)
+    }
 }
