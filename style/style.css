@@ -30,8 +30,8 @@ body {
 }
 
 .square {
-    height: 7em;
-    width:  7em;
+    height: 5rem;
+    width:  5rem;
     display: flex;
     justify-content: center;
     align-items: center;

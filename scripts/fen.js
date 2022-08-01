@@ -6,6 +6,8 @@ Some usefull fens :
 Init : 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'
 Castle : 'r3k2r/8/8/8/8/8/8/R3K2R w'
 Attack on the king : 'r6r/4k3/8/8/8/8/8/2K1R2R b'
+Checkmate : '7R/8/7k/8/8/8/8/2K3R1 b'
+Pat : '4k3/8/3K1Q2/8/8/8/8/8 b'
 */
 
 function loadFen(fen) {
@@ -20,51 +22,51 @@ function loadFen(fen) {
             let pos = Number(y+x)
             switch (position[y][abscissa]) {
                 case 'r':
-                    blackPieces.push(new Rook('black', pos, [-10, -1, 1, 10], 'rook', './assets/br.png'));
+                    blackPieces.push(new Rook('black', pos, [-10, -1, 1, 10], 'rook'));
                     x ++;
                     break;
                 case 'R':
-                    whitePieces.push(new Rook('white', pos, [-10, -1, 1, 10], 'rook', './assets/wr.png'));
+                    whitePieces.push(new Rook('white', pos, [-10, -1, 1, 10], 'rook'));
                     x ++;
                     break;
                 case 'n':
-                    blackPieces.push(new Knight('black', pos, undefined, 'knight', './assets/bn.png'));
+                    blackPieces.push(new Knight('black', pos, undefined, 'knight'));
                     x ++;
                     break;
                 case 'N':
-                    whitePieces.push(new Knight('white', pos, undefined, 'knight', './assets/wn.png'));
+                    whitePieces.push(new Knight('white', pos, undefined, 'knight'));
                     x ++;
                     break;
                 case 'b':
-                    blackPieces.push(new Bishop('black', pos, [-11, -9, 9, 11], 'bishop', './assets/bb.png'));
+                    blackPieces.push(new Bishop('black', pos, [-11, -9, 9, 11], 'bishop'));
                     x ++;
                     break;
                 case 'B':
-                    whitePieces.push(new Bishop('white', pos, [-11, -9, 9, 11], 'bishop', './assets/wb.png'));
+                    whitePieces.push(new Bishop('white', pos, [-11, -9, 9, 11], 'bishop'));
                     x ++;
                     break;
                 case 'q':
-                    blackPieces.push(new Queen('black', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen', './assets/bq.png'));
+                    blackPieces.push(new Queen('black', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen'));
                     x ++;
                     break;
                 case 'Q':
-                    whitePieces.push(new Queen('white', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen', './assets/wq.png'));
+                    whitePieces.push(new Queen('white', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen'));
                     x ++;
                     break;
                 case 'k':
-                    blackPieces.push(new King('black', pos, undefined, 'king', './assets/bk.png'));
+                    blackPieces.push(new King('black', pos, undefined, 'king'));
                     x ++;
                     break;
                 case 'K':
-                    whitePieces.push(new King('white', pos, undefined, 'king', './assets/wk.png'));
+                    whitePieces.push(new King('white', pos, undefined, 'king'));
                     x ++;
                     break;
                 case 'p':
-                    blackPieces.push(new Pawn('black', pos, undefined, 'pawn', './assets/bp.png'));
+                    blackPieces.push(new Pawn('black', pos, undefined, 'pawn'));
                     x ++;
                     break;
                 case 'P':
-                    whitePieces.push(new Pawn('white', pos, undefined, 'pawn', './assets/wp.png'));
+                    whitePieces.push(new Pawn('white', pos, undefined, 'pawn'));
                     x ++;
                     break;
                 default:
@@ -73,8 +75,8 @@ function loadFen(fen) {
             }
         }
     }
-    if (fen.length != 1) {
-        if (fen[1] == 'b' || fen[1] == 'B') {
+    if (fen.length !== 1) {
+        if (fen[1] === 'b' || fen[1] === 'B') {
             player = 'black';
         }
     }
@@ -89,27 +91,27 @@ function createFen() {
         'bishop': 'b',
         'queen': 'q',
         'king': 'k',
-        'pawn': 'p'
+        'pawn': 'p',
     };
     for (let y = 0; y < 8; y++) {
         let gap = 0;
         for (let x = 0; x < 8; x++) {
             let pos = fromCoordinatesToPos(x, y);
             let piece = findPieceByPos(pos);
-            if (piece == false) {
+            if (!piece) {
                 gap ++;
             } else {
-                if (gap != 0) {
+                if (gap !== 0) {
                     fen += String(gap);
                     gap = 0;
                 }
                 let type = piece.getType();
                 let color = piece.getColor();
                 let symbol = pieces[type];
-                fen += `${color == 'white' ? symbol.toUpperCase() : symbol}`;
+                fen += `${color === 'white' ? symbol.toUpperCase() : symbol}`;
             }
         }
-        if (gap != 0) {
+        if (gap !== 0) {
             fen += String(gap);
         }
         if (y != 7) {

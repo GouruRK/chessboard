@@ -1,12 +1,12 @@
 const findImageByPos = function(pos) {
-    let square = document.getElementById('p-' + String(pos));
+    let square = document.getElementById(`p-${pos}`);
     return square.children[0];
 };
 
 const findImagesByColor = function(color) {
     let pieces = piecesArray[color];
     let images = [];
-    for(let piece of pieces) {
+    for (let piece of pieces) {
         images.push(findImageByPos(piece.getPos()));
     }
     return images;
@@ -22,8 +22,7 @@ const removeImageFromPos = function(pos) {
 }
 
 const addImage = function(pos, image) {
-    let square = document.getElementById('p-' + String(pos));
-    console.log(square)
+    let square = document.getElementById(`p-${pos}`);
     square.appendChild(image);
 } 
 

@@ -10,18 +10,18 @@ function drag(event) {
     let parentId = extractPosFromElement(event.target.parentNode);
     let piece = findPieceByPos(parentId);
     // Check if the piece belongs to the current player. If not break
-    if (piece.getColor() != currentPlayer) {
+    if (piece.getColor() !== currentPlayer) {
         return;
     }
     // Look at all the squares the piece can go
     let legalMoves = piece.getLegalMoves();
     legalMoves = removeMovesIfCheck(parentId, legalMoves, currentPlayer);
     // If there is, add special moves
-    if (piece.getType() == 'king') {
+    if (piece.getType() === 'king') {
         let caslteDir = piece.canCastle();
-        if (caslteDir != false) {
-            for (let c of caslteDir) {
-                legalMoves.push(c == 'short' ? piece.getPos()+2 : piece.getPos()-2);
+        if(caslteDir !== false) {
+            for(let c of caslteDir) {
+                legalMoves.push(c === 'short' ? piece.getPos() + 2 : piece.getPos() - 2);
             }
         }
     }
@@ -39,17 +39,16 @@ function drop(event) {
     let newPos;
     let square;
     // If the square wasn't empty
-    if (event.target.localName == 'img') {
+    if (event.target.localName === 'img') {
         square = event.target.parentNode;
         newPos = extractPosFromElement(square);
         removeImageFromPos(newPos);
-    }
-    else {
+    } else {
         square = event.target;
         newPos = extractPosFromElement(square);
     }
     // Add the piece to its new place 
-    square.appendChild(document.getElementById('p-' + String(pos)).children[0]);
+    square.appendChild(document.getElementById(`p-${pos}`).children[0]);
     // Remove the allow drop authorization
     removeAllowDrop();
     // Hide the legal moves squares
@@ -72,7 +71,7 @@ function allowDrop(event) {
 
 function changeDraggableValue(color, value) {
     let pieces = findImagesByColor(color);
-    for (let piece of pieces) {
+    for(let piece of pieces) {
         piece.draggable = value;
     }
 }
@@ -80,7 +79,7 @@ function changeDraggableValue(color, value) {
 function addAllowDrop(pos) {
     // Allow drop of positions
     let square;
-    pos.forEach(p => {
+    pos.forEach((p) => {
         square = document.getElementById(p);
         square.ondragover = function() {
             allowDrop(event);
@@ -89,11 +88,11 @@ function addAllowDrop(pos) {
 }
 
 function removeAllowDrop(pos = undefined) {
-    if (pos == undefined) {
+    if(pos === undefined) {
         // Remove allow drop for all grid
         let grid = document.getElementById('grid');
         for (let ligne of grid.childNodes) {
-            for (let square of ligne.childNodes) {
+            for(let square of ligne.childNodes) {
                 square.ondragover = '';
             }
         }
@@ -112,7 +111,7 @@ function showAllowDrop(pos) {
 }
 
 function hideAllowDrop(pos = undefined) {
-    if (pos == undefined) {
+    if(pos === undefined) {
         let grid = document.getElementById('grid');
         for (let ligne of grid.childNodes) {
             for (let square of ligne.childNodes) {

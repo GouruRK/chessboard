@@ -1,7 +1,7 @@
 'use strict';
 
 function move(from, to, player = undefined, visual = true) {
-    if (player == undefined) {
+    if (player === undefined) {
         player = currentPlayer;
     }
     let piece = findColoredPieceByPos(piecesArray[player], from);
@@ -30,23 +30,23 @@ function move(from, to, player = undefined, visual = true) {
 }
 
 function enPassant(from, to, player = undefined, visual = true) {
-    if (player == undefined) {
+    if (player === undefined) {
         player = currentPlayer;
     }
     let piece = findColoredPieceByPos(piecesArray[player], from);
     let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], to);
     // determine if its an 'en passant' move
-    if ((delta(from, to) == 11 || delta(from, to) == 9)
-        && piece.getType() == 'pawn'
-        && opponentPiece == false) {
+    if ((delta(from, to) === 11 || delta(from, to) === 9)
+        && piece.getType() === 'pawn'
+        && !opponentPiece) {
 
         // find the real position of the ennemy piece
-        opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], piece.getPos()-1);
-        if (opponentPiece == false || opponentPiece.getEnPassant() == false) {
-            opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], piece.getPos()+1);
+        opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], piece.getPos() - 1);
+        if (!opponentPiece || !opponentPiece.getEnPassant()) {
+            opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], piece.getPos() + 1);
         }
         // If the piece can't be found, its not an 'en passant' move : just a capture
-        if (opponentPiece == false || opponentPiece.getEnPassant() == false) {
+        if (!opponentPiece || !opponentPiece.getEnPassant()) {
             return;
         }
         // remove the piece
@@ -61,12 +61,12 @@ function enPassant(from, to, player = undefined, visual = true) {
 
 function removeEnPassant(color) {
     let pieces = findPiecesByType(piecesArray[color], 'pawn');
-    pieces.forEach(p => p.setEnPassant(false));
+    pieces.forEach((p) => p.setEnPassant(false));
 }
 
 function castle(from, to) {
     let piece = findColoredPieceByPos(piecesArray[currentPlayer], from);
-    if (piece != false && piece.getType() == 'king' && delta(from, to) == 2) {
+    if (piece !== false && piece.getType() === 'king' && delta(from, to) === 2) {
         let rook;
         let oldRookPos;
         let newRookPos;
@@ -94,7 +94,7 @@ function castle(from, to) {
         };
         newRookImage.classList.add('img');
         // add the new rook element to the visual board
-        document.getElementById('p-'+String(newRookPos)).appendChild(newRookImage);
+        document.getElementById(`p-${newRookPos}`).appendChild(newRookImage);
         // remove the old rook element from the visual board
         removeImageFromPos(oldRookPos);
         // set the new propreties to the rook
@@ -108,14 +108,14 @@ function castle(from, to) {
 function removeMovesIfCheck(from, moves, color) {
     let keep = {
         'white': copyPiecesArray(piecesArray['white']),
-        'black': copyPiecesArray(piecesArray['black'])
-    }
+        'black': copyPiecesArray(piecesArray['black']),
+    };
     let newMoves = [];
     for (let to of moves) {
         piecesArray['white'] = keep['white'];
         piecesArray['black'] = keep['black'];
         simulate(from, to, color);
-        if (isCheck(color) == false) {
+        if (!isCheck(color)) {
             newMoves.push(to);
         }
     }

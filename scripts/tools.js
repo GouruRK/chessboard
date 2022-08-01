@@ -2,7 +2,7 @@
 
 const isInsideArray = function(array, element) {
     return array.reduce((prev, curr) => {
-        if (prev == true) {
+        if (prev) {
             return prev;
         } else if (curr == element) {
             return true;
@@ -18,7 +18,7 @@ const fromPosToCoordinates = function(pos) {
 };
 
 const fromCoordinatesToPos = function(x, y) {
-    return y * 10 + x
+    return y * 10 + x;
 };
 
 const isInsideGrid = function(pos) {
@@ -32,11 +32,12 @@ const isInsideGrid = function(pos) {
 };
 
 const removePosOutOfGrid = function(pos) {
-    return pos.filter(p => isInsideGrid(p));
+    return pos.filter((p) => isInsideGrid(p));
 };
 
 const removePosWhereAlly = function(pos, color) {
-    return pos.filter(p => findColoredPieceByPos(piecesArray[color], p) == []);
+    // return pos.filter((p) => !findColoredPieceByPos(piecesArray[color], p));
+    return pos.filter((p) => findColoredPieceByPos(piecesArray[color], p) == []);
 };
 
 const findColoredPieceByPos = function(pieces, pos) {
@@ -53,17 +54,17 @@ const findColoredPieceByPos = function(pieces, pos) {
 const findPieceByPos = function(pos) {
     let piece = findColoredPieceByPos(piecesArray[currentPlayer], pos);
     if (piece != false) {
-        return piece
+        return piece;
     }
     return findColoredPieceByPos(piecesArray[reverseColor[currentPlayer]], pos);
 };
 
 const findPiecesByType = function(pieces, type) {
-    return pieces.filter(piece => piece.getType() == type);
+    return pieces.filter((piece) => piece.getType() === type);
 };
 
 const removePieceFromPos = function(pieces, pos) {
-    return pieces.filter(piece => piece.getPos() != pos);
+    return pieces.filter((piece) => piece.getPos() !== pos);
 };
 
 const delta = function(pos1, pos2) {
@@ -71,12 +72,12 @@ const delta = function(pos1, pos2) {
 }
 
 const copyArray = function(array) {
-    return array.filter(_ => true);
+    return [...array];
 }
 
 const copyPiecesArray = function(array) {
     let newArray = [];
-    array.forEach(p => {
+    array.forEach((p) => {
         newArray.push(p.copy());
     });
     return newArray;

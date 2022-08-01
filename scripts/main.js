@@ -2,12 +2,12 @@
 
 const reverseColor = {
     'white': 'black',
-    'black': 'white'
+    'black': 'white',
 };
 
 const piecesArray = {
     'white': [],
-    'black': []
+    'black': [],
 };
 
 let currentPlayer;
@@ -30,4 +30,30 @@ function isSquareAttacked(square, color) {
         }
     }
     return false;
+}
+
+function isCheckmate(color) {
+    if (!isCheck(color)) {
+        return false;
+    }
+    return findIfLegalMoves(color);
+}
+
+function isPat(color) {
+    if (isCheck(color)) {
+        return false;
+    }
+    return findIfLegalMoves(color);
+}
+
+function findIfLegalMoves(color) {
+    let pieces = piecesArray[color];
+    for (let piece of pieces) {
+        let legalMoves = piece.getLegalMoves();
+        legalMoves = removeMovesIfCheck(piece.getPos(), legalMoves, color);
+        if (legalMoves.length !== 0) {
+            return false;
+        }
+    }
+    return true;
 }

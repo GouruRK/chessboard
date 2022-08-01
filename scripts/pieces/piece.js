@@ -2,13 +2,16 @@
 
 class Piece {
 
-    constructor(color, pos, step, type, src) {
+    constructor(color, pos, step, type, src, lastMoves = undefined) {
+        if (lastMoves === undefined) {
+            lastMoves = [];
+        }
         this.color = color;
         this.pos = pos;
         this.step = step;
         this.type = type;
         this.src = src;
-        this.lastMoves = [];
+        this.lastMoves = lastMoves;
     }
 
     getPos() {
@@ -42,12 +45,12 @@ class Piece {
     }
 
     hasMoved() {
-        return this.lastMoves.length == 0 ? false : true;
+        return this.lastMoves.length === 0 ? false : true;
     }
 
     getLegalMoves() {
         if (this.step == undefined) {
-            return []
+            return [];
         }
         let moves = [];
         for(let step of this.step) {

@@ -12,7 +12,7 @@
 */
 
 function init() {
-    let fen = 'r6r/4k3/8/8/8/8/8/2K1R2R b';
+    let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
     let [whitePieces, blackPieces, player] = loadFen(fen);
     createGrid();
     placeImages(whitePieces);
@@ -24,8 +24,8 @@ function init() {
 }
 
 function createGrid() {
-    let grid = document.getElementById('grid')
-    for (let y = 0; y < 8; y++) {
+    let grid = document.getElementById('grid');
+    for (let y = 0; y < 8; y ++) {
         grid.appendChild(createLine(y));
     }
 }
@@ -35,11 +35,11 @@ function createGrid() {
 function createLine(y) {
     let line = document.createElement('div');
     let subColor;
-    line.className = 'line'
-    for (let x = 0; x < 8; x++) {
+    line.className = 'line';
+    for (let x = 0; x < 8; x ++) {
         subColor = document.createElement('div');
-        subColor.id = String(fromCoordinatesToPos(x, y))
-        subColor.className = `square ${(x + y) % 2 == 0 ? 'white': 'black'}`;
+        subColor.id = fromCoordinatesToPos(x, y);
+        subColor.className = `square ${(x + y) % 2 === 0 ? 'white': 'black'}`;
         subColor.innerHTML += `<div class='square' id='p-${fromCoordinatesToPos(x, y)}' draggable=false ondrop='drop(event)'>`;
         line.appendChild(subColor);
     }
@@ -50,9 +50,9 @@ function placeImages(piecesArray) {
     let pos;
     let square;
     let image;
-    piecesArray.forEach(piece => {
+    piecesArray.forEach((piece) => {
         pos = piece.getPos();
-        square = document.getElementById('p-' + String(pos));
+        square = document.getElementById(`p-${pos}`);
         image = document.createElement('img');
         image.src = piece.getSrc();
         image.alt = piece.getSrc();
