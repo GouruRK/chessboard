@@ -55,6 +55,6 @@ class King extends Piece {
     }
     
     copy() {
-        return new King(this.color, this.pos, this.step, this.type, this.src, copyArray(this.lastMoves));
+        return new King(this.color, this.pos, this.step, this.type, copyArray(this.lastMoves));
     }
 }

@@ -21,6 +21,7 @@ This is a work in progress chessboard using HTML / CSS / JS
 * Display a message when checkmate or when the game is a draw
 * Allowing the user to choose a promotion
 * Rotate the chessboard
+* Allow the user to click on a square to move the piece, instead of dragging it
 
 ___
 
