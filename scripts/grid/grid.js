@@ -12,7 +12,7 @@
 */
 
 function init() {
-    let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
+    let fen = 'k7/8/8/8/8/8/8/6NK';
     let [whitePieces, blackPieces, player] = loadFen(fen);
     createGrid();
     placeImages(whitePieces);

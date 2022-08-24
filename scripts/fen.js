@@ -7,7 +7,10 @@ Init : 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'
 Castle : 'r3k2r/8/8/8/8/8/8/R3K2R w'
 Attack on the king : 'r6r/4k3/8/8/8/8/8/2K1R2R b'
 Checkmate : '7R/8/7k/8/8/8/8/2K3R1 b'
-Pat : '4k3/8/3K1Q2/8/8/8/8/8 b'
+Stalemate : '4k3/8/3K1Q2/8/8/8/8/8 b'
+Dead position 1, king vs king : 'k7/8/8/8/8/8/8/7K'
+Dead position 2, king and bishop vs king : 'k7/8/8/8/b7/8/8/7K'
+Dead position 3, king and knight vs king : 'k7/8/8/8/8/8/8/6NK'
 */
 
 function loadFen(fen) {
