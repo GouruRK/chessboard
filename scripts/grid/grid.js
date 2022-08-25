@@ -22,6 +22,18 @@ function init() {
     currentPlayer = player;
     changeDraggableValue(currentPlayer, true);
     document.getElementById('starting-panel').style.display = 'none';
+    setNames();
+}
+
+function setNames() {
+    let whiteName = document.getElementById('white-player-name').value;
+    let blackName = document.getElementById('black-player-name').value;
+    document.getElementById('white-name').innerText = whiteName;
+    document.getElementById('black-name').innerText = blackName;
+    let nameAreas = document.getElementsByClassName('players-name-tab');
+    for (let area of nameAreas) {
+        area.style.display = 'flex';
+    }
 }
 
 function createGrid() {

@@ -12,3 +12,31 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.players-name-tab {
+    border: 1px solid black;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: auto;
+    height: 3rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#white-player-tab {
+    position: absolute;
+    bottom: 0;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+#black-player-tab {
+    position: absolute;
+    top: 0;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}

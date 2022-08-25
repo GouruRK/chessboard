@@ -1,65 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style/style.css">
-    <link rel="stylesheet" type="text/css" href="style/board.css">
-    <link rel="stylesheet" type="text/css" href="style/starting_menu.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <meta charset='UTF-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' type='text/css' href='style/style.css'>
+    <link rel='stylesheet' type='text/css' href='style/board.css'>
+    <link rel='stylesheet' type='text/css' href='style/starting_menu.css'>
+    <link rel='preconnect' href='https://fonts.googleapis.com'>
+    <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+    <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap' rel='stylesheet'>
     <title>Chessboard</title>
 </head>
 <body onload=createGrid()>
-    <div id="starting-panel">
-        <div class="sub-category" id="white-player">
+    <div class='players-name-tab' id='black-player-tab'>
+        <p class='players-name-text' id='black-name'></p>
+    </div>
+    <div id='starting-panel'>
+        <div class='sub-category' id='white-player'>
             <div>
-                <label for="white-player-name">
-                    White Player
+                <label for='white-player-name'>
+                    White Player Name
                 </label>
-                <input type="text" name="white-player-name" id="white-player-name" value="White">
+                <input type='text' name='white-player-name' id='white-player-name' value='White'>
             </div>
         </div>
-        <div class="sub-category" id="black-player">
+        <div class='sub-category' id='black-player'>
             <div>
-                <label for="black-player-name">
-                    Black Player
+                <label for='black-player-name'>
+                    Black Player Name
                 </label>
-                <input type="text" name="black-player-name" id="black-player-name" value="Black">
+                <input type='text' name='black-player-name' id='black-player-name' value='Black'>
             </div>
         </div>
-        <div class="sub-category" id="custom-position">
+        <div class='sub-category' id='custom-position'>
             <div>
-                <label for="fen">
+                <label for='fen'>
                     Fen
                 </label>
-                <input type="text" id="fen" value='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'>
+                <input type='text' id='fen' value='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'>
             </div>
         </div>
-        <div class="sub-category" id="starting-button">
+        <div class='sub-category' id='starting-button'>
             <div>
-                <button id="start-button">Start</button>
+                <button id='start-button'>Start</button>
             </div>
             
         </div>
     </div>
-    <div id="grid"></div>
+    <div id='grid'></div>
+    <div class='players-name-tab' id='white-player-tab'>
+        <p class='players-name-text' id='white-name'></p>
+    </div>
 </body>
 
-<script src="scripts/grid/dragndrop.js"></script>
-<script src="scripts/grid/grid.js"></script>
-<script src="scripts/grid/tools.js"></script>
-<script src="scripts/pieces/piece.js"></script>
-<script src="scripts/pieces/bishop.js"></script>
-<script src="scripts/pieces/king.js"></script>
-<script src="scripts/pieces/knight.js"></script>
-<script src="scripts/pieces/pawn.js"></script>
-<script src="scripts/pieces/queen.js"></script>
-<script src="scripts/pieces/rook.js"></script>
-<script src="scripts/fen.js"></script>
-<script src="scripts/main.js"></script>
-<script src="scripts/tools.js"></script>
-<script src="scripts/moves.js"></script>
+<script src='scripts/grid/dragndrop.js'></script>
+<script src='scripts/grid/grid.js'></script>
+<script src='scripts/grid/tools.js'></script>
+<script src='scripts/pieces/piece.js'></script>
+<script src='scripts/pieces/bishop.js'></script>
+<script src='scripts/pieces/king.js'></script>
+<script src='scripts/pieces/knight.js'></script>
+<script src='scripts/pieces/pawn.js'></script>
+<script src='scripts/pieces/queen.js'></script>
+<script src='scripts/pieces/rook.js'></script>
+<script src='scripts/fen.js'></script>
+<script src='scripts/main.js'></script>
+<script src='scripts/tools.js'></script>
+<script src='scripts/moves.js'></script>
 </html>
