@@ -124,7 +124,7 @@ function findIfLegalMoves(color) {
 
 function result(how) {
     if (how === 'checkmate') {
-        showGameResult(`Player ${currentPlayer} win by checkmate`);
+        showGameResult(`Player ${playersName[currentPlayer]} win by checkmate`);
     } else if (how === 'stalemate') {
         showGameResult(`The game is a draw`);
     } else if (how === 'dead position') {
