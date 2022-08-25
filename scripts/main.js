@@ -19,6 +19,9 @@ let playersName = {
     'black': undefined,
 };
 
+let moveHistory = [];
+let positionHistory = [];
+
 
 // check if the king of the `color` is in check
 function isCheck(color) {
