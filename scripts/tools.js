@@ -70,7 +70,7 @@ const removePosOutOfGrid = function(array) {
  */
 const removePosWhereAlly = function(array, color) {
     // return array.filter((pos) => !findColoredPieceByPos(piecesArray[color], pos));
-    return array.filter((pos) => findColoredPieceByPos(piecesArray[color], pos).length === 0);
+    return array.filter((pos) => findColoredPieceByPos(piecesArray[color], pos) == []);
 };
 
 /**

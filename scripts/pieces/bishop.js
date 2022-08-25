@@ -2,8 +2,7 @@
 
 class Bishop extends Piece {
     constructor(color, pos, step, type, lastMoves = undefined) {
-        let piece = color === 'white' ? 'wb' : 'bb';
-        let src = `./assets/${piece}.png`;
+        let src = color === 'white' ? 'wb': 'bb'; 
         super(color, pos, step, type, src, lastMoves);
     }
 

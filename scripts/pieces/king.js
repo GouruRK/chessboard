@@ -2,8 +2,7 @@
 
 class King extends Piece {
     constructor(color, pos, step, type, lastMoves = undefined) {
-        let piece = color == 'white' ? 'wk' : 'bk';
-        let src = `./assets/${piece}.png`;
+        let src = color === 'white' ? 'wk': 'bk'; 
         super(color, pos, step, type, src, lastMoves);
     }
 

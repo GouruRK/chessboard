@@ -6,11 +6,12 @@ class Piece {
         if (lastMoves === undefined) {
             lastMoves = [];
         }
+        let path = './assets/pieces/'
         this.color = color;
         this.pos = pos;
         this.step = step;
         this.type = type;
-        this.src = src;
+        this.src = path + src + '.png';
         this.lastMoves = lastMoves;
     }
 

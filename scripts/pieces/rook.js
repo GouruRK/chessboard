@@ -2,8 +2,7 @@
 
 class Rook extends Piece {
     constructor(color, pos, step, type, lastMoves = undefined) {
-        let piece = color == 'white' ? 'wr' : 'br';
-        let src = `./assets/${piece}.png`;
+        let src = color === 'white' ? 'wr': 'br'; 
         super(color, pos, step, type, src, lastMoves);
     }
 

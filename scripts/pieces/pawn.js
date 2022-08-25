@@ -2,8 +2,7 @@
 
 class Pawn extends Piece {
     constructor(color, pos, step, type, lastMoves = undefined) {
-        let piece = color === 'white' ? 'wp' : 'bp';
-        let src = `./assets/${piece}.png`;
+        let src = color === 'white' ? 'wp': 'bp'; 
         super(color, pos, step, type, src, lastMoves);
         // this.enPassant = true -> the piece can be taken by 'en passant'
         this.enPassant = false;

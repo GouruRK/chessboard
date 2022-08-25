@@ -2,8 +2,7 @@
 
 class Knight extends Piece {
     constructor(color, pos, step, type, lastMoves = undefined) {
-        let piece = color === 'white' ? 'wn' : 'bn';
-        let src = `./assets/${piece}.png`;
+        let src = color === 'white' ? 'wn': 'bn'; 
         super(color, pos, step, type, src, lastMoves);
     }
 
