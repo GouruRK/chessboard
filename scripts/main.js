@@ -1,6 +1,7 @@
 'use strict';
 
 document.getElementById('start-button').addEventListener('click', init);
+document.getElementById('close').addEventListener('click', closePanel);
 
 const reverseColor = {
     'white': 'black',
@@ -13,6 +14,11 @@ const piecesArray = {
 };
 
 let currentPlayer;
+let playersName = {
+    'white': undefined,
+    'black': undefined,
+};
+
 
 // check if the king of the `color` is in check
 function isCheck(color) {
@@ -32,6 +38,19 @@ function isSquareAttacked(square, color) {
         }
     }
     return false;
+}
+
+function isGameEnded(player = currentPlayer) {
+    if (isCheckmate(player)) {
+        return [true, 'checkmate'];
+    }
+    if (isStalemate(player)) {
+        return [true, 'stalemate'];
+    }
+    if (isDeadPosition()) {
+        return [true, 'dead position'];
+    }
+    return [false, undefined];
 }
 
 function isCheckmate(color) {
@@ -101,4 +120,14 @@ function findIfLegalMoves(color) {
         }
     }
     return true;
+}
+
+function result(how) {
+    if (how === 'checkmate') {
+        showGameResult(`Player ${currentPlayer} win by checkmate`);
+    } else if (how === 'stalemate') {
+        showGameResult(`The game is a draw`);
+    } else if (how === 'dead position') {
+        showGameResult(`The game is a draw`);
+    }
 }

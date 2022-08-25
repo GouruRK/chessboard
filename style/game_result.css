@@ -1,0 +1,29 @@
+#game-result {
+    display: none;
+    z-index: 2;
+    background-color: white;
+    width: 30rem;
+    height: 15rem;
+    border-radius: 15px;
+    border: 1px solid black;
+}
+
+#close {
+    display: block;
+    position: relative;
+    float: right;
+    top: 30px;
+    right: 30px
+}
+
+#title {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#result {
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
+}

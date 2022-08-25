@@ -1,6 +1,9 @@
 'use strict';
 
 function drag(event) {
+    if (currentPlayer !== 'white' && currentPlayer !== 'black') {
+        return;
+    }
     // hide the default piece
     event.target.classList.add('hide');
     // Remove allowDrop from previous placement
@@ -54,7 +57,11 @@ function drop(event) {
     // Hide the legal moves squares
     hideAllowDrop();
     // Move the piece on the internal board
-    move(pos, newPos);
+    let endgame = move(pos, newPos);
+    // if the move finish the game
+    if (endgame) {
+        return true;
+    }
     // Remove the possibilities to move the same player's pieces
     changeDraggableValue(currentPlayer, false);
     // Authorize the new player to move his pieces

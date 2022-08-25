@@ -29,14 +29,14 @@ body {
 
 #white-player-tab {
     position: absolute;
-    bottom: 0;
+    bottom: -1px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
 }
 
 #black-player-tab {
     position: absolute;
-    top: 0;
+    top: -1px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
 }

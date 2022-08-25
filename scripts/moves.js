@@ -23,6 +23,13 @@ function move(from, to, player = undefined, visual = true) {
     if (visual) {
         // change the player
         currentPlayer = reverseColor[currentPlayer];
+        let res = isGameEnded(currentPlayer);
+        if (res[0]) {
+            currentPlayer = reverseColor[currentPlayer];
+            result(res[1]);
+            currentPlayer = undefined;
+            return true;
+        }
         // remove en passant
         removeEnPassant(currentPlayer);
     }

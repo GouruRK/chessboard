@@ -4,9 +4,12 @@
     <meta charset='UTF-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <!--Style-->
     <link rel='stylesheet' type='text/css' href='style/style.css'>
     <link rel='stylesheet' type='text/css' href='style/board.css'>
     <link rel='stylesheet' type='text/css' href='style/starting_menu.css'>
+    <link rel='stylesheet' type='text/css' href='style/game_result.css'>
+    <!--Fonts-->
     <link rel='preconnect' href='https://fonts.googleapis.com'>
     <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
     <link href='https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap' rel='stylesheet'>
@@ -48,6 +51,12 @@
             
         </div>
     </div>
+    <div id="game-result">
+        <img id='close' src='assets/icons/close.svg'>
+        <div id="title">
+            <p id="result">Player white win by checkmate</p>
+        </div>
+    </div>
     <div id='grid'></div>
     <div class='players-name-tab' id='white-player-tab'>
         <p class='players-name-text' id='white-name'></p>
@@ -56,6 +65,7 @@
 
 <script src='scripts/grid/dragndrop.js'></script>
 <script src='scripts/grid/grid.js'></script>
+<script src='scripts/grid/overlay.js'></script>
 <script src='scripts/grid/tools.js'></script>
 <script src='scripts/pieces/piece.js'></script>
 <script src='scripts/pieces/bishop.js'></script>
