@@ -5,9 +5,46 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style/style.css">
+    <link rel="stylesheet" type="text/css" href="style/board.css">
+    <link rel="stylesheet" type="text/css" href="style/starting_menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <title>Chessboard</title>
 </head>
-<body onload=init()>
+<body onload=createGrid()>
+    <div id="starting-panel">
+        <div class="sub-category" id="white-player">
+            <div>
+                <label for="white-player-name">
+                    White Player
+                </label>
+                <input type="text" name="white-player-name" id="white-player-name" value="White">
+            </div>
+        </div>
+        <div class="sub-category" id="black-player">
+            <div>
+                <label for="black-player-name">
+                    Black Player
+                </label>
+                <input type="text" name="black-player-name" id="black-player-name" value="Black">
+            </div>
+        </div>
+        <div class="sub-category" id="custom-position">
+            <div>
+                <label for="fen">
+                    Fen
+                </label>
+                <input type="text" id="fen" value='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w'>
+            </div>
+        </div>
+        <div class="sub-category" id="starting-button">
+            <div>
+                <button id="start-button">Start</button>
+            </div>
+            
+        </div>
+    </div>
     <div id="grid"></div>
 </body>
 

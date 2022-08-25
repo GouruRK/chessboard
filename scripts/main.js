@@ -1,5 +1,7 @@
 'use strict';
 
+document.getElementById('start-button').addEventListener('click', init);
+
 const reverseColor = {
     'white': 'black',
     'black': 'white',

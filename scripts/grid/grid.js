@@ -12,15 +12,16 @@
 */
 
 function init() {
-    let fen = 'k7/8/8/8/8/8/8/6NK';
+    // let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
+    let fen = document.getElementById('fen').value;
     let [whitePieces, blackPieces, player] = loadFen(fen);
-    createGrid();
     placeImages(whitePieces);
     placeImages(blackPieces);
     piecesArray['white'] = whitePieces;
     piecesArray['black'] = blackPieces;
     currentPlayer = player;
     changeDraggableValue(currentPlayer, true);
+    document.getElementById('starting-panel').style.display = 'none';
 }
 
 function createGrid() {
