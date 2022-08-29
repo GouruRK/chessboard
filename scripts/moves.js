@@ -30,10 +30,16 @@ function move(from, to, player = undefined, visual = true) {
     piece.setPos(to);
     piece.addMove([from, to]);
     if (visual) {
+        moveCount += 1;
+        if (currentPlayer === 'white') {
+            turnCount += 1;
+        }
         // change the player
         currentPlayer = reverseColor[currentPlayer];
-        moveHistory.push(writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator))
-        positionHistory.push(createFen())
+        let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
+        moveHistory.push(moveName);
+        addMoveToShow(moveName);
+        positionHistory.push(createFen());
         let res = isGameEnded(currentPlayer);
         if (res[0]) {
             currentPlayer = reverseColor[currentPlayer];
@@ -207,4 +213,29 @@ function writeMove(piece, from, to, capture, check, checkmate, castle) {
         }
     }
     return move;
+}
+
+function addMoveToShow(move) {
+    let table = document.getElementById('show-moves');
+    let lastElement = table.lastChild;
+    // table empty, first move or white new move
+    if (moveCount === 1 || moveCount % 2 === 1) {
+        let row = document.createElement('tr');
+        let moveIndicator = document.createElement('td');
+        moveIndicator.innerText = `${turnCount}.`;
+        moveIndicator.classList.add('move-indicator');
+        row.appendChild(moveIndicator);
+        let whiteMove = document.createElement('td');
+        whiteMove.innerText = move;
+        whiteMove.classList.add('white-move');
+        row.appendChild(whiteMove);
+        let blackMove = document.createElement('td');
+        blackMove.classList.add('black-move')
+        blackMove.innerText = '';
+        row.appendChild(blackMove);
+        table.appendChild(row);
+    } else {
+        // black new move
+        lastElement.lastChild.innerText = move;
+    }
 }

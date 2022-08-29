@@ -1,0 +1,120 @@
+#control-panel {
+    z-index: 2;
+    position: fixed;
+    right: 1em;
+    width: 15em;
+    height: 99%;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    border: 1px solid black;
+}
+
+#control-panel > * {
+    margin-left: 15px;
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#menu {
+    height: 100%;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+#starting-button {
+    width: 100%;
+    height: 7em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: flex-end;
+}
+
+.sub-category {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-category > * {
+    margin-bottom: 10px;
+}
+
+input[type='text'] {
+    height: 50%;
+    font-size: 15px;
+    font-family: 'Roboto', sans-serif;
+}
+
+input:focus {
+    outline: none;
+}
+
+#select-time-control {
+    list-style-type: none;
+}
+
+#select-time-control label,
+#select-time-control input {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#select-time-control > li {
+    float: left;
+    margin: 0 5px 0 0;
+    width: 100px;
+    height: 40px;
+    position: relative;
+}
+
+#select-time-control input {
+    opacity: 0.01;
+    z-index: 100;
+}
+
+#select-time-control input:checked+label {
+    border: 1px solid black
+}
+
+#select-time-control label {
+    border: 1px solid #CCC;
+    cursor: pointer;
+    z-index: 90;
+}
+  
+#select-time-control > li:hover {
+    background: #DDD;
+}
+
+.current-game {
+    display: none;
+}
+
+#show-moves {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#show-moves > tr {
+    width: 30%;
+}
+
+#show-moves > tr:nth-child(even) {
+    background-color: #CCC;
+}
+
+#show-moves > tr > td {
+    margin-left: 30px;
+    width: 30%;
+}

@@ -21,8 +21,9 @@ function init() {
     piecesArray['black'] = blackPieces;
     currentPlayer = player;
     changeDraggableValue(currentPlayer, true);
-    document.getElementById('starting-panel').style.display = 'none';
+    hideStartPanel();
     setNames();
+    showCurrentGamePanel()
 }
 
 function createGrid() {

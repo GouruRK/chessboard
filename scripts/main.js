@@ -22,6 +22,9 @@ let playersName = {
 let moveHistory = [];
 let positionHistory = [];
 
+let moveCount = 0;
+let turnCount = 0;
+
 
 // check if the king of the `color` is in check
 function isCheck(color) {

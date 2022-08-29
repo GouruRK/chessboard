@@ -7,7 +7,7 @@
     <!--Style-->
     <link rel='stylesheet' type='text/css' href='style/style.css'>
     <link rel='stylesheet' type='text/css' href='style/board.css'>
-    <link rel='stylesheet' type='text/css' href='style/starting_menu.css'>
+    <link rel='stylesheet' type='text/css' href='style/overlay.css'>
     <link rel='stylesheet' type='text/css' href='style/game_result.css'>
     <!--Fonts-->
     <link rel='preconnect' href='https://fonts.googleapis.com'>
@@ -19,36 +19,54 @@
     <div class='players-name-tab' id='black-player-tab'>
         <p class='players-name-text' id='black-name'></p>
     </div>
-    <div id='starting-panel'>
-        <div class='sub-category' id='white-player'>
-            <div>
-                <label for='white-player-name'>
-                    White Player Name
-                </label>
-                <input type='text' name='white-player-name' id='white-player-name' value='White' onClick="this.select();">
+    <div id="control-panel">
+        <div id="menu">
+            <div class='current-game upper-content'>
+                <p>Game Moves</p>
+                <table border='0' id='show-moves'></table>
             </div>
-        </div>
-        <div class='sub-category' id='black-player'>
-            <div>
-                <label for='black-player-name'>
-                    Black Player Name
-                </label>
-                <input type='text' name='black-player-name' id='black-player-name' value='Black' onClick="this.select();">
+            <div class='starting-menu upper-content'>
+                <div class='sub-category'id='white-player'>
+                    <p>White Player Name</p>
+                    <input type='text' name='white-player-name' id='white-player-name' value='White' onClick="this.select();">
+                </div>
+                <div class='sub-category' id='black-player'>
+                    <p>Black Player Name</p>
+                    <input type='text' name='black-player-name' id='black-player-name' value='Black' onClick="this.select();">
+                </div>
+                <div class='sub-category' id='custom-position'>
+                    <p>Fen</p>
+                    <input type='text' id='fen' value='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w' onClick="this.select();">
+                </div>
+                <div class="sub-category" id="time-control">
+                    <p>Time Control</p>
+                    <ul id='select-time-control'>
+                        <li>
+                            <input type="radio" id="inf" name="time" checked="checked"/>
+                            <label for="inf">&infin;</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="3|2" name="time" />
+                            <label for="3|2">3|2</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="5|0" name="time" />
+                            <label for="5|0">5|0</label>
+                        </li>
+                        <li>
+                            <input type="radio" id="10|0" name="time" />
+                            <label for="10|0">10|2</label>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class='sub-category' id='custom-position'>
-            <div>
-                <label for='fen'>
-                    Fen
-                </label>
-                <input type='text' id='fen' value='rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w' onClick="this.select();">
+            <div id="lower-content">
+                <div class='starting-menu sub-category' id='starting-button'>
+                    <div>
+                        <button id='start-button'>Start</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class='sub-category' id='starting-button'>
-            <div>
-                <button id='start-button'>Start</button>
-            </div>
-            
         </div>
     </div>
     <div id="game-result">
