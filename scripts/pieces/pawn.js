@@ -1,12 +1,12 @@
 'use strict';
 
 class Pawn extends Piece {
-    constructor(color, pos, step, lastMoves = undefined) {
-        let src = color === 'white' ? 'wp': 'bp'; 
+    constructor(color, pos, step, lastMoves = undefined, enPassant = undefined) {
+        let src = color === 'white' ? 'wp': 'bp';
         let type = 'pawn';
         super(color, pos, step, type, src, lastMoves);
         // this.enPassant = true -> the piece can be taken by 'en passant'
-        this.enPassant = false;
+        this.enPassant = enPassant === undefined ? false: enPassant;
     }
 
     getLegalMoves() {
@@ -47,7 +47,7 @@ class Pawn extends Piece {
         let enPassant = [p - 1, p + 1];
         for (let pos in enPassant) {
             if (isInsideGrid(enPassant[pos])) {
-                let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[this.color]], enPassant[pos]) ;
+                let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[this.color]], enPassant[pos]);
                 if (opponentPiece !== false && opponentPiece.getType() == 'pawn' && opponentPiece.getEnPassant()) {
                     squares.push(capture[pos]);
                 }
@@ -75,7 +75,7 @@ class Pawn extends Piece {
     }
 
     copy() {
-        let p = new Pawn(this.color, this.pos, this.step, copyArray(this.lastMoves));
+        let p = new Pawn(this.color, this.pos, this.step, copyArray(this.lastMoves), this.enPassant);
         return p
     }
 }
