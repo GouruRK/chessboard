@@ -30,6 +30,7 @@ function move(from, to, player = undefined, visual = true) {
     piece.setPos(to);
     piece.addMove([from, to]);
     if (visual) {
+        // Update move number
         moveCount += 1;
         currentViewPositionNumber += 1;
         if (currentPlayer === 'white') {
@@ -42,10 +43,12 @@ function move(from, to, player = undefined, visual = true) {
         }
         // change the player
         currentPlayer = reverseColor[currentPlayer];
+        // Update moves
         let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
         moveHistory.push(moveName);
         addMoveToShow(moveName);
         positionHistory.push(createFen());
+        // Check if the game is finish
         let res = isGameEnded(currentPlayer);
         if (res[0]) {
             currentPlayer = reverseColor[currentPlayer];
