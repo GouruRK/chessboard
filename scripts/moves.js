@@ -31,6 +31,7 @@ function move(from, to, player = undefined, visual = true) {
     piece.addMove([from, to]);
     if (visual) {
         moveCount += 1;
+        currentViewPositionNumber += 1;
         if (currentPlayer === 'white') {
             turnCount += 1;
         }
@@ -249,6 +250,7 @@ function addMoveToShow(move) {
 
 function loadPreviousPosition(moveNumber) {
     removeAllImages();
+    hideAllowDrop();
     let [whitePieces, blackPieces, player] = loadFen(positionHistory[moveNumber - 1]);
     placeImages(whitePieces);
     placeImages(blackPieces);

@@ -3,6 +3,32 @@
 document.getElementById('start-button').addEventListener('click', init);
 document.getElementById('close').addEventListener('click', closePanel);
 
+document.getElementById('begin').addEventListener('click', function() {
+    currentViewPositionNumber = 1;
+    loadPreviousPosition(1);
+});
+
+document.getElementById('end').addEventListener('click', function() {
+    currentViewPositionNumber = moveCount;
+    loadPreviousPosition(moveCount);
+});
+
+document.getElementById('back').addEventListener('click', function() {
+    if (currentViewPositionNumber <= 1) {
+        return;
+    }
+    currentViewPositionNumber --;
+    loadPreviousPosition(currentViewPositionNumber);
+});
+
+document.getElementById('next').addEventListener('click', function() {
+    if (currentViewPositionNumber >= moveCount) {
+        return;
+    }
+    currentViewPositionNumber ++;
+    loadPreviousPosition(currentViewPositionNumber);
+});
+
 const reverseColor = {
     'white': 'black',
     'black': 'white',
@@ -24,6 +50,7 @@ let positionHistory = [];
 
 let moveCount = 0;
 let turnCount = 0;
+let currentViewPositionNumber = 0;
 
 
 // check if the king of the `color` is in check
