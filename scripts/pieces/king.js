@@ -1,8 +1,9 @@
 'use strict';
 
 class King extends Piece {
-    constructor(color, pos, step, type, lastMoves = undefined) {
-        let src = color === 'white' ? 'wk': 'bk'; 
+    constructor(color, pos, step, lastMoves = undefined) {
+        let src = color === 'white' ? 'wk': 'bk';
+        let type = 'king';
         super(color, pos, step, type, src, lastMoves);
     }
 
@@ -54,6 +55,6 @@ class King extends Piece {
     }
     
     copy() {
-        return new King(this.color, this.pos, this.step, this.type, copyArray(this.lastMoves));
+        return new King(this.color, this.pos, this.step, copyArray(this.lastMoves));
     }
 }

@@ -1,8 +1,9 @@
 'use strict';
 
 class Pawn extends Piece {
-    constructor(color, pos, step, type, lastMoves = undefined) {
+    constructor(color, pos, step, lastMoves = undefined) {
         let src = color === 'white' ? 'wp': 'bp'; 
+        let type = 'pawn';
         super(color, pos, step, type, src, lastMoves);
         // this.enPassant = true -> the piece can be taken by 'en passant'
         this.enPassant = false;
@@ -74,7 +75,7 @@ class Pawn extends Piece {
     }
 
     copy() {
-        let p = new Pawn(this.color, this.pos, this.step, this.type, copyArray(this.lastMoves));
+        let p = new Pawn(this.color, this.pos, this.step, copyArray(this.lastMoves));
         return p
     }
 }

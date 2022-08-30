@@ -25,51 +25,51 @@ function loadFen(fen) {
             let pos = Number(y+x)
             switch (position[y][abscissa]) {
                 case 'r':
-                    blackPieces.push(new Rook('black', pos, [-10, -1, 1, 10], 'rook'));
+                    blackPieces.push(new Rook('black', pos, [-10, -1, 1, 10]));
                     x ++;
                     break;
                 case 'R':
-                    whitePieces.push(new Rook('white', pos, [-10, -1, 1, 10], 'rook'));
+                    whitePieces.push(new Rook('white', pos, [-10, -1, 1, 10]));
                     x ++;
                     break;
                 case 'n':
-                    blackPieces.push(new Knight('black', pos, undefined, 'knight'));
+                    blackPieces.push(new Knight('black', pos, undefined));
                     x ++;
                     break;
                 case 'N':
-                    whitePieces.push(new Knight('white', pos, undefined, 'knight'));
+                    whitePieces.push(new Knight('white', pos, undefined));
                     x ++;
                     break;
                 case 'b':
-                    blackPieces.push(new Bishop('black', pos, [-11, -9, 9, 11], 'bishop'));
+                    blackPieces.push(new Bishop('black', pos, [-11, -9, 9, 11]));
                     x ++;
                     break;
                 case 'B':
-                    whitePieces.push(new Bishop('white', pos, [-11, -9, 9, 11], 'bishop'));
+                    whitePieces.push(new Bishop('white', pos, [-11, -9, 9, 11]));
                     x ++;
                     break;
                 case 'q':
-                    blackPieces.push(new Queen('black', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen'));
+                    blackPieces.push(new Queen('black', pos, [-11, -10, -9, -1, 1, 9, 10, 11]));
                     x ++;
                     break;
                 case 'Q':
-                    whitePieces.push(new Queen('white', pos, [-11, -10, -9, -1, 1, 9, 10, 11], 'queen'));
+                    whitePieces.push(new Queen('white', pos, [-11, -10, -9, -1, 1, 9, 10, 11]));
                     x ++;
                     break;
                 case 'k':
-                    blackPieces.push(new King('black', pos, undefined, 'king'));
+                    blackPieces.push(new King('black', pos, undefined));
                     x ++;
                     break;
                 case 'K':
-                    whitePieces.push(new King('white', pos, undefined, 'king'));
+                    whitePieces.push(new King('white', pos, undefined));
                     x ++;
                     break;
                 case 'p':
-                    blackPieces.push(new Pawn('black', pos, undefined, 'pawn'));
+                    blackPieces.push(new Pawn('black', pos, undefined));
                     x ++;
                     break;
                 case 'P':
-                    whitePieces.push(new Pawn('white', pos, undefined, 'pawn'));
+                    whitePieces.push(new Pawn('white', pos, undefined));
                     x ++;
                     break;
                 default:

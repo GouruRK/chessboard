@@ -1,8 +1,9 @@
 'use strict';
 
 class Rook extends Piece {
-    constructor(color, pos, step, type, lastMoves = undefined) {
-        let src = color === 'white' ? 'wr': 'br'; 
+    constructor(color, pos, step, lastMoves = undefined) {
+        let src = color === 'white' ? 'wr': 'br';
+        let type = 'rook';
         super(color, pos, step, type, src, lastMoves);
     }
 
@@ -11,6 +12,6 @@ class Rook extends Piece {
     }
 
     copy() {
-        return new Rook(this.color, this.pos, this.step, this.type, copyArray(this.lastMoves));
+        return new Rook(this.color, this.pos, this.step, copyArray(this.lastMoves));
     }
 }
