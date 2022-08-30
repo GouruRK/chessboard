@@ -49,3 +49,20 @@ const removeAllImages = function() {
         }
     }
 }
+
+const removeImagesFromColor = function(color) {
+    let pieces = piecesArray[color];
+    for (let piece of pieces) {
+        let pos = piece.getPos();
+        removeImageFromPos(pos);
+    }
+}
+
+const getScreenCoordinatesFromImages = function(image) {
+    let rect = image.getBoundingClientRect();
+    return [rect.x, rect.y];
+}
+
+const getScreenSize = function() {
+    return [window.screen.availWidth, window.screen.height];
+}

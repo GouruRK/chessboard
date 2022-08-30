@@ -35,6 +35,11 @@ function move(from, to, player = undefined, visual = true) {
         if (currentPlayer === 'white') {
             turnCount += 1;
         }
+        // Promotion
+        let [_, y] = fromPosToCoordinates(to);
+        if (piece.getType() === 'pawn' && (y === 0 || y === 7)) {
+            showPromotion(currentPlayer, to);
+        }
         // change the player
         currentPlayer = reverseColor[currentPlayer];
         let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);

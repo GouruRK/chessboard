@@ -1,3 +1,5 @@
+'use strict';
+
 function hideStartPanel() {
     let startingMenu = document.getElementsByClassName('starting-menu');
     for (let element of startingMenu) {
@@ -33,3 +35,40 @@ function showCurrentGamePanel() {
         element.style.display = 'block';
     }
 }
+
+// Promotion
+
+function showPromotion(color, pos) {
+    let promotionContainer = document.getElementById(`${color}-promotion`);
+    promotionContainer.style.display = 'flex';
+    let chidren = promotionContainer.children;
+    for (let child of chidren) {
+        let pieceType = child.classList[1];
+        child.addEventListener('click', function() {
+            applyPromotion(color, pos, pieceType);
+        });
+    }
+}
+
+function applyPromotion(color, pos, pieceType) {
+    piecesArray[color] = removePieceFromPos(piecesArray[color], pos);
+    let piece;
+    if (pieceType === 'queen') {
+        piece = new Queen(color, pos, [-11, -10, -9, -1, 1, 9, 10, 11]);
+    } else if (pieceType === 'rook') {
+        piece = new Rook(color, pos, [-10, -1, 1, 10]);
+    } else if (pieceType === 'bishop') {
+        piece = new Bishop(color, pos, [-11, -9, 9, 11]);
+    } else {
+        piece = new Knight(color, pos, undefined);
+    }
+    piecesArray[color].push(piece);
+    let promotionContainer = document.getElementById(`${color}-promotion`);
+    promotionContainer.style.display = 'none';
+    let chidren = promotionContainer.children;
+    for (let child of chidren) {
+        child.removeEventListener('click', null);
+    }
+    removeImagesFromColor(color);
+    placeImages(piecesArray[color]);
+}   

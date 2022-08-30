@@ -63,7 +63,7 @@ function drop(event) {
         return true;
     }
     // Remove the possibilities to move the same player's pieces
-    changeDraggableValue(currentPlayer, false);
+    changeDraggableValue(reverseColor[currentPlayer], false);
     // Authorize the new player to move his pieces
     changeDraggableValue(currentPlayer, true);
 }
