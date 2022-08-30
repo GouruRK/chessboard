@@ -218,6 +218,7 @@ function writeMove(piece, from, to, capture, check, checkmate, castle) {
 function addMoveToShow(move) {
     let table = document.getElementById('show-moves');
     let lastElement = table.lastChild;
+    let n = moveCount;
     // table empty, first move or white new move
     if (moveCount === 1 || moveCount % 2 === 1) {
         let row = document.createElement('tr');
@@ -228,6 +229,9 @@ function addMoveToShow(move) {
         let whiteMove = document.createElement('td');
         whiteMove.innerText = move;
         whiteMove.classList.add('white-move');
+        whiteMove.onclick = function() {
+            loadPreviousPosition(n);
+        };
         row.appendChild(whiteMove);
         let blackMove = document.createElement('td');
         blackMove.classList.add('black-move')
@@ -237,5 +241,21 @@ function addMoveToShow(move) {
     } else {
         // black new move
         lastElement.lastChild.innerText = move;
+        lastElement.lastChild.onclick = function() {
+            loadPreviousPosition(n);
+        }
+    }
+}
+
+function loadPreviousPosition(moveNumber) {
+    removeAllImages();
+    let [whitePieces, blackPieces, player] = loadFen(positionHistory[moveNumber - 1]);
+    placeImages(whitePieces);
+    placeImages(blackPieces);
+    piecesArray['white'] = whitePieces;
+    piecesArray['black'] = blackPieces;
+    currentPlayer = player;
+    if (moveNumber === moveCount) {
+        changeDraggableValue(currentPlayer, true);
     }
 }

@@ -37,3 +37,15 @@ const extractPosFromElement = function(element) {
     }
     return parseInt(pos);
 }
+
+const removeAllImages = function() {
+    for (let y = 0; y < 8; y++) {
+        for (let x = 0; x < 8; x++) {
+            let pos = fromCoordinatesToPos(x, y);
+            let square = document.getElementById(`p-${pos}`);
+            if (square.childElementCount === 1) {
+                square.removeChild(square.lastChild);
+            }
+        }
+    }
+}
