@@ -7,6 +7,21 @@ class Rook extends Piece {
         super(color, pos, step, type, src, lastMoves);
     }
 
+    addMove(move) {
+        if (this.lastMoves.length === 0) {
+            let [x, _] = fromPosToCoordinates(move[0]);
+            if (x === 0) {
+                let king = findPiecesByType(piecesArray[this.color], 'king')[0];
+                king.setLongCastle(false);
+            } else {
+                let king = findPiecesByType(piecesArray[this.color], 'king')[0];
+                king.setShortCastle(false);
+            }
+        }
+        this.lastMoves.push(move);
+        return this.lastMoves;
+    }
+
     canCastle() {
         return this.lastMoves.length === 0 ? true : false;
     }

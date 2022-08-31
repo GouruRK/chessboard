@@ -153,3 +153,10 @@ const copyPiecesArray = function(array) {
     });
     return newArray;
 }
+
+const fromPosToSquare = function(pos) {
+    let [x, y] = fromPosToCoordinates(pos);
+    let digits = '87654321';
+    let letters = 'abcdefghi';
+    return letters[x] + digits[y];
+}

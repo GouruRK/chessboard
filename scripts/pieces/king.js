@@ -1,10 +1,20 @@
 'use strict';
 
 class King extends Piece {
-    constructor(color, pos, step, lastMoves = undefined) {
+    constructor(color, pos, step, lastMoves = undefined, shortCastle = undefined, longCastle = undefined) {
         let src = color === 'white' ? 'wk': 'bk';
         let type = 'king';
         super(color, pos, step, type, src, lastMoves);
+        this.longCastle = shortCastle === undefined ? true: shortCastle;
+        this.shortCastle = longCastle === undefined ? true: longCastle;
+    }
+
+
+    addMove(move) {
+        this.lastMoves.push(move);
+        this.longCastle = false;
+        this.shortCastle = false;
+        return this.lastMoves;
     }
 
     getLegalMoves() {
@@ -33,11 +43,16 @@ class King extends Piece {
                 [p - 3, p - 2, p - 1],
                 [p + 1, p + 2]
             ];
+            let right = {
+                'long': this.longCastle,
+                'short': this.shortCastle,
+            }
+            console.log(right)
             let castle = [];
             for (let r in rooks) {
                 let rook = findPieceByPos(rooks[r]);
                 let check = true;
-                if (rook !== false && rook.getType() === 'rook' && !rook.hasMoved()) {
+                if (rook !== false && rook.getType() === 'rook' && !rook.hasMoved() && right[type[r]]) {
                     for (let square of between[r]) {
                         let sq = findPieceByPos(square);
                         if(sq !== false || isSquareAttacked(square, reverseColor[this.color])) {
@@ -54,7 +69,21 @@ class King extends Piece {
         return false;
     }
     
+    setLongCastle(value) {
+        this.longCastle = value;
+        return value;
+    }
+
+    setShortCastle(value) {
+        this.shortCastle = value;
+        return value;
+    }
+
+    getCastleRights() {
+        return [this.shortCastle, this.longCastle];
+    }
+
     copy() {
-        return new King(this.color, this.pos, this.step, copyArray(this.lastMoves));
+        return new King(this.color, this.pos, this.step, copyArray(this.lastMoves), this.shortCastle, this.longCastle);
     }
 }

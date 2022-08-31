@@ -32,6 +32,14 @@ class Piece {
         return this.lastMoves;
     }
 
+    getLastMove() {
+        let length = this.lastMoves.length;
+        if (length === 0) {
+            return [];
+        }
+        return this.lastMoves[length - 1];
+    }
+
     addMove(move) {
         this.lastMoves.push(move);
         return this.lastMoves;
