@@ -51,6 +51,7 @@ let positionHistory = [];
 let moveCount = 0;
 let turnCount = 0;
 let currentViewPositionNumber = 0;
+let halfMoveCount = 0;
 
 
 // check if the king of the `color` is in check
@@ -82,6 +83,9 @@ function isGameEnded(player = currentPlayer) {
     }
     if (isDeadPosition()) {
         return [true, 'dead position'];
+    }
+    if (isHalfMoveExeed()) {
+        return [true, 'half move'];
     }
     return [false, undefined];
 }
@@ -155,12 +159,18 @@ function findIfLegalMoves(color) {
     return true;
 }
 
+function isHalfMoveExeed() {
+    return halfMoveCount >= 50;
+}
+
 function result(how) {
     if (how === 'checkmate') {
         showGameResult(`Player ${playersName[currentPlayer]} win by checkmate`);
     } else if (how === 'stalemate') {
-        showGameResult(`The game is a draw`);
+        showGameResult(`The game is a draw by stalemate`);
     } else if (how === 'dead position') {
-        showGameResult(`The game is a draw`);
+        showGameResult(`The game is a draw by dead position`);
+    } else if (how === 'half move') {
+        showGameResult('The game is a draw by the 50-moves rule')
     }
 }

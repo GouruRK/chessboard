@@ -14,12 +14,14 @@
 function init() {
     // let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
     let fen = document.getElementById('fen').value;
-    let [whitePieces, blackPieces, player] = loadFen(fen);
+    let [whitePieces, blackPieces, player, halfmove, turn] = loadFen(fen);
     placeImages(whitePieces);
     placeImages(blackPieces);
     piecesArray['white'] = whitePieces;
     piecesArray['black'] = blackPieces;
     currentPlayer = player;
+    halfMoveCount = halfmove;
+    turnCount = turn;
     changeDraggableValue(currentPlayer, true);
     hideStartPanel();
     setNames();

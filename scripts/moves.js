@@ -31,10 +31,15 @@ function move(from, to, player = undefined, visual = true) {
     piece.addMove([from, to]);
     if (visual) {
         // Update move number
-        moveCount += 1;
-        currentViewPositionNumber += 1;
+        moveCount ++;
+        currentViewPositionNumber ++;
+        halfMoveCount ++;
         if (currentPlayer === 'white') {
-            turnCount += 1;
+            turnCount ++;
+        }
+        // check if halfMoveCount can be reset
+        if (piece.getType() === 'pawn' || capture) {
+            halfMoveCount = 0;
         }
         // Promotion
         let [_, y] = fromPosToCoordinates(to);
@@ -43,6 +48,8 @@ function move(from, to, player = undefined, visual = true) {
         }
         // change the player
         currentPlayer = reverseColor[currentPlayer];
+        // remove en passant
+        removeEnPassant(currentPlayer);
         // Update moves
         let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
         moveHistory.push(moveName);
@@ -56,8 +63,6 @@ function move(from, to, player = undefined, visual = true) {
             currentPlayer = undefined;
             return true;
         }
-        // remove en passant
-        removeEnPassant(currentPlayer);
     }
     
 }

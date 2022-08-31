@@ -1,5 +1,6 @@
 'use strict';
 
+// Understand FEN notation : https://www.chess.com/terms/fen-chess
 
 /*
 Some usefull fens :
@@ -20,13 +21,14 @@ function loadFen(fen) {
     let whitePieces = [];
     let blackPieces = [];
     let player = 'white';
-    let enPassant;
     let castleRight = {
         'K': false,
         'Q': false,
         'k': false,
         'q': false,
-    }
+    };
+    let halfmove = 0;
+    let turn = 0;
     fen = fen.split(' ');
     fen.forEach((seq, index) => {
         // Parse position
@@ -132,15 +134,22 @@ function loadFen(fen) {
                 let y = digits.indexOf(seq[1]);
                 let piece;
                 if (player === 'white') {
-                    y --;
+                    y ++;
                     piece = findColoredPieceByPos(blackPieces, fromCoordinatesToPos(x, y));
                 } else {
-                    y ++;
+                    y --;
                     piece = findColoredPieceByPos(whitePieces, fromCoordinatesToPos(x, y));
                 }
-                console.log(piece)
                 piece.setEnPassant(true);
             }
+        }
+        // Parse halfmouve count
+        else if (index === 4) {
+            halfmove = parseInt(seq);
+        }
+        // Parse turn count
+        else if (index === 5) {
+            turn = parseInt(seq);
         }
     });
     if (fen.length !== 1) {
@@ -148,7 +157,7 @@ function loadFen(fen) {
             player = 'black';
         }
     }
-    return [whitePieces, blackPieces, player];
+    return [whitePieces, blackPieces, player, halfmove, turn];
 }
 
 function createFen() {
@@ -211,11 +220,15 @@ function createFen() {
     if (!canCastle) {
         fen += '-';
     }
-    // adding if en passant is possible
+    // add if en passant is possible
     if (typeof(pieceToBeTakenEnPassant) === 'number') {
         fen += ` ${fromPosToSquare(pieceToBeTakenEnPassant)}`;
     } else {
         fen += ' -';
     }
+    // add half move count
+    fen += ` ${halfMoveCount}`;
+    // add turn count
+    fen += ` ${turnCount}`; 
     return fen;
 }
