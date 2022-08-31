@@ -27,6 +27,7 @@ function move(from, to, player = undefined, visual = true) {
         }
     }
     // update the piece's propreties
+    let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
     piece.setPos(to);
     piece.addMove([from, to]);
     if (visual) {
@@ -51,7 +52,6 @@ function move(from, to, player = undefined, visual = true) {
         // remove en passant
         removeEnPassant(currentPlayer);
         // Update moves
-        let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
         moveHistory.push(moveName);
         addMoveToShow(moveName);
         positionHistory.push(createFen());
@@ -200,10 +200,12 @@ function writeMove(piece, from, to, capture, check, checkmate, castle) {
         if (p.getPos() !== from) {
             let legalMoves = p.getLegalMoves();
             if (isInsideArray(legalMoves, to)) {
-                let [xp, yp] = fromPosToCoordinates(p.getPos);
+                let [xp, yp] = fromPosToCoordinates(p.getPos());
                 if (xp === x) {
                     move = move + digits[y];
                 } else if (yp === y) {
+                    move = move + letters[x];
+                } else { // usefull for knights for example
                     move = move + letters[x];
                 }
             }
