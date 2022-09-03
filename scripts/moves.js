@@ -7,6 +7,7 @@ function move(from, to, player = undefined, visual = true) {
     let capture = false;
     let castleIndicator = false;
     let piece = findColoredPieceByPos(piecesArray[player], from);
+    let moveName;
     let opponentPiece = findColoredPieceByPos(piecesArray[reverseColor[player]], to);
     // if there is already a piece where the player places it's own one : its a capture
     if (opponentPiece != false) {
@@ -25,9 +26,9 @@ function move(from, to, player = undefined, visual = true) {
         if (c[0]) {
             castleIndicator = c[1];
         }
+        moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
     }
     // update the piece's propreties
-    let moveName = writeMove(piece, from, to, capture, isCheck(currentPlayer), isCheckmate(currentPlayer), castleIndicator);
     piece.setPos(to);
     piece.addMove([from, to]);
     if (visual) {
