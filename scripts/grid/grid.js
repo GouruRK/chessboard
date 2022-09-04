@@ -12,7 +12,6 @@
 */
 
 function init() {
-    // let fen = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w';
     let fen = document.getElementById('fen').value;
     let [whitePieces, blackPieces, player, halfmove, turn] = loadFen(fen);
     placeImages(whitePieces);
@@ -22,10 +21,16 @@ function init() {
     currentPlayer = player;
     halfMoveCount = halfmove;
     turnCount = turn;
+    let [initialTime, addedTime] = parseTime();
+    playerTimer['white'] = new Timer(initialTime, addedTime, timeoutFunction, updateFrame);
+    playerTimer['black'] = new Timer(initialTime, addedTime, timeoutFunction, updateFrame);
+    additionalTime = addedTime;
+    insertNames();
     changeDraggableValue(currentPlayer, true);
     hideStartPanel();
-    setNames();
+    //insertNames();
     showCurrentGamePanel()
+    playerTimer[currentPlayer].startTimer();
 }
 
 function createGrid() {

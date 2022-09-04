@@ -130,3 +130,7 @@ input:focus {
     width: 1.5em;
     height: 1.5em;
 }
+
+.custom-time {
+    display: none;
+}

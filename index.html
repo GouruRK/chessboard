@@ -55,10 +55,18 @@
                             <label for="5|0">5|0</label>
                         </li>
                         <li>
-                            <input type="radio" id="10|0" name="time" />
-                            <label for="10|0">10|2</label>
+                            <input type="radio" id="10|5" name="time" />
+                            <label for="10|5">10|5</label>
+                        </li>
+                        <li>
+                            <input type="radio" onclick="toggleTimeControl()" id="custom" name="time" />
+                            <label for="custom">custom</label>
                         </li>
                     </ul>
+                    <label class='custom-time' for='custom-minuts'>Minuts</label>
+                    <input class='custom-time' id='custom-minuts' type="number" id="minuts" />
+                    <label class='custom-time' for='cusom-additional-time'>Additional time</label>
+                    <input class='custom-time' id='custom-additional-time' type="number" id="minuts" />
                 </div>
             </div>
             <div class="lower-content">
@@ -141,4 +149,5 @@
 <script src='scripts/main.js'></script>
 <script src='scripts/tools.js'></script>
 <script src='scripts/moves.js'></script>
+<script src='scripts/timer.js'></script>
 </html>

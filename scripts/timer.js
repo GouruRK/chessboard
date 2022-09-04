@@ -1,34 +1,53 @@
 'use strict';
 
 class Timer {
-    constructor(timeLeft, step = 1000) {
+    constructor(timeLeft, addedTime, timeoutFunction = undefined, updateFrameFunction = undefined) {
         // timeLeft in seconds
         this.timeLeft = timeLeft;
-        this.step = step;
-        this.timeOutValue;
+        this.addedTime = addedTime;
+        this.step = 1000;
+        this.timeoutFunction = timeoutFunction;
+        this.updateFrameFunction = updateFrameFunction;
+        this.timeoutValue;
     }
 
     startTimer() {
+        if (this.timeLeft === 'inf') {
+            return;
+        }
         // Start the timer and don't stop until a stop event or time left = 0
         this.decrement();
     }
 
     decrement() {
         if (this.timeLeft <= 0) {
+            this.stopTimer();
+            if (this.timeoutFunction !== undefined) {
+                this.timeoutFunction();
+            }
             return;
         }
-        console.log(this.timeLeft)
+        if (this.updateFrameFunction !== undefined) {
+            this.updateFrameFunction();
+        }
         this.removeTime(1);
-        this.timeOutValue = setTimeout(() => {
+        this.timeoutValue = setTimeout(() => {
             this.decrement();
         }, this.step);
     }
 
     stopTimer() {
-        clearTimeout(this.timeOutValue);
+        clearTimeout(this.timeoutValue);
+        this.addTime(this.addedTime);
+        if (this.updateFrameFunction !== undefined) {
+            this.updateFrameFunction();
+        }
     }
 
     addTime(value) {
+        if (this.timeLeft === 'inf') {
+            return this.timeLeft;
+        }
         this.timeLeft += value;
         return this.timeLeft;
     }
@@ -39,12 +58,13 @@ class Timer {
     }
 
     format() {
+        if (this.timeLeft === 'inf') {
+            return ['inf', 'inf'];
+        }
         let toConvert = this.timeLeft;
-        let hours = Math.floor(toConvert / 3600);
-        toConvert = toConvert % 3600;
         let minutes = Math.floor(toConvert / 60);
         toConvert = toConvert % 60;
         let seconds = toConvert;
-        return [hours, minutes, seconds];
+        return [minutes, seconds];
     }
 }

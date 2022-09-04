@@ -37,6 +37,7 @@ function drag(event) {
 
 function drop(event) {
     event.preventDefault();
+    playerTimer[currentPlayer].stopTimer();
     let pos = event.dataTransfer.getData('piece');
     pos = parseInt(pos);
     let newPos;
@@ -66,6 +67,7 @@ function drop(event) {
     changeDraggableValue(reverseColor[currentPlayer], false);
     // Authorize the new player to move his pieces
     changeDraggableValue(currentPlayer, true);
+    playerTimer[currentPlayer].startTimer();
 }
 
 function onDragEnd(event) {

@@ -45,6 +45,12 @@ let playersName = {
     'black': undefined,
 };
 
+let playerTimer = {
+    'white': undefined,
+    'black': undefined,
+};
+let additionalTime;
+
 let moveHistory = [];
 let positionHistory = [];
 
@@ -173,4 +179,9 @@ function result(how) {
     } else if (how === 'half move') {
         showGameResult('The game is a draw by the 50-moves rule')
     }
+}
+
+function timeoutFunction() {
+    showGameResult(`Player ${playersName[reverseColor[currentPlayer]]} win by time`);
+    currentPlayer = undefined;
 }
