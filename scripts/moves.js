@@ -247,6 +247,7 @@ function addMoveToShow(move) {
         whiteMove.innerText = move;
         whiteMove.classList.add('white-move');
         whiteMove.onclick = function() {
+            currentViewPositionNumber = n;
             loadPreviousPosition(n);
         };
         row.appendChild(whiteMove);
@@ -259,6 +260,7 @@ function addMoveToShow(move) {
         // black new move
         lastElement.lastChild.innerText = move;
         lastElement.lastChild.onclick = function() {
+            currentViewPositionNumber = n;
             loadPreviousPosition(n);
         }
     }

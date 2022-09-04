@@ -1,28 +1,62 @@
 # Chessboard
 
-This is a work in progress chessboard using HTML / CSS / JS
+![In game](./assets/screenshots/in%20game.PNG)
 
-## Already done
+This is a work in progress chessboard using vanilla HTML / CSS / JS
 
-* Load and create FENs
-* Display the board
-* Display the pieces
-* Move the pieces using drag and drop html propreties
-* Move pieces according to their legals moves
-* Capture other pieces
-* 'En passant'
-* Castle
-* The concept of 'check' (or when a square is under attack)
+## Table of Contents
+ - [Table of Contents](#table-of-contents)
+ - [How install](#how-install)
+ - [How launch](#how-launch)
+ - [Features](#features)
+ - [Supported](#supported)
+ - [Next Steps ?](#next-steps-)
+ - [Content](#content)
 
-## To do
+## How install
 
-* Use the [Draggable API](https://github.com/Shopify/draggable) to remove the natural opacity of elements when drag
-* Remove legals moves if the king is under attack
-* Display a message when checkmate or when the game is a draw
-* Allowing the user to choose a promotion
-* Rotate the chessboard
-* Allow the user to click on a square to move the piece, instead of dragging it
+To clone this repository :
+```bash
+> git clone https://github.com/GouruRK/chessboard.git
+
+> cd chessboard
+```
+
+## How launch
+
+In the chessboard folder, just open the `index.html` file in your favorite browser
+
+## Features
+
+* **Play local games of chess**
+* **Time control**
+* **Movement tracking**
+* **Position controller** (using the arrows or clicking on the move's list)
+* **Show legal moves**
+* **All rules of chess**
+* **Standard FEN notations**
+
+## Supported
+
+Chrome (last version) : Supported
+
+Firefox (last version) : Supported
+
+Microsoft Edge (last version): Supported
+
+Internet Explorer : Not supported
+
+## Content
+
+All pieces pictures came from [chess.com](https://www.chess.com/) website.
+
+All icons came from [icons8](https://img.icons8.com/) website.
+
+## Next Steps ?
+
+* Use the [draggable API](https://github.com/Shopify/draggable)
+* Support PGN files
 
 ___
 
-Pieces images came from [chess.com](https://www.chess.com/).    
+Check out my other projects on github : [Gouru](https://github.com/GouruRK/).
